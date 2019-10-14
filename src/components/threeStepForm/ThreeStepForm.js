@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { string, object } from "yup";
 
 class ThreeStepForm extends Component {
@@ -30,7 +30,9 @@ class ThreeStepForm extends Component {
           render={() => (
             <Form>
               <Field name="firstName" />
+              <ErrorMessage name="firstName" />
               <Field name="secondName" />
+              <ErrorMessage name="secondName" />
               <button type="submit">submit</button>
             </Form>
           )}
