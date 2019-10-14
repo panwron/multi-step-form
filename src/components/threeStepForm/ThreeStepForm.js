@@ -6,6 +6,7 @@ import SelectFields from "./SelectFields";
 import CheckBoxFields from "./CheckBoxFields";
 import TextFields from "./TextFields";
 import FormStep from "./FormStep";
+import StepsIndicator from "./StepsIndicator";
 
 const initialValues = {
   city: "",
@@ -49,6 +50,7 @@ class ThreeStepForm extends Component {
     const { currentStep } = this.state;
     return (
       <div className="form-container">
+        <StepsIndicator numOfSteps={3} currentStep={currentStep} />
         <Formik
           initialValues={initialValues}
           validationSchema={object().shape(validationShema)}
