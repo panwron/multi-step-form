@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { string, object } from "yup";
+import { string, object, array } from "yup";
 
-import Select from "./SelectFields";
 import SelectFields from "./SelectFields";
+import CheckBoxFields from "./CheckBoxFields";
 
 class ThreeStepForm extends Component {
   constructor(props) {
@@ -26,7 +26,8 @@ class ThreeStepForm extends Component {
             firstName: string().required("required"),
             secondName: string().required("required"),
             state: string().required("required"),
-            city: string().required("required")
+            city: string().required("required"),
+            colors: array().required("required")
           })}
           onSubmit={values => {
             console.log(values);
@@ -39,6 +40,7 @@ class ThreeStepForm extends Component {
               <Field name="secondName" />
               <ErrorMessage name="secondName" />
               <SelectFields stateFilter={values.state} />
+              <CheckBoxFields name="colors" values={["red", "green", "blue"]} />
               <button type="submit">submit</button>
             </Form>
           )}
