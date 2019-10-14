@@ -1,17 +1,27 @@
 import React from "react";
 import { Field, ErrorMessage } from "formik";
+import PropTypes from "prop-types";
 
-const Select = props => {
+import cities from "../../data/cities.json";
+
+const Select = ({ name, values }) => {
   return (
     <div>
-      <Field name={props.name} component="select">
+      <Field name={name} component="select">
         <option value="">select city</option>
-        <option value="red">NY</option>
-        <option value="green">LA</option>
+        {cities.map((c, i) => (
+          <option key={i} value={c.city}>
+            {c.city}
+          </option>
+        ))}
       </Field>
-      <ErrorMessage name={props.name} />
+      <ErrorMessage name={name} />
     </div>
   );
+};
+
+Select.propTypes = {
+  name: PropTypes.string.isRequired
 };
 
 export default Select;
