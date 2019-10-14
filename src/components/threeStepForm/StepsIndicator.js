@@ -5,6 +5,7 @@ const StepsIndicator = ({ numOfSteps, currentStep }) => (
   <div className="steps-indicator">
     {Array.from({ length: numOfSteps }, (v, i) => (
       <span
+        key={i}
         style={{
           backgroundColor: `${i === currentStep ? "#2ecc71" : "#ecf0f1"}`
         }}

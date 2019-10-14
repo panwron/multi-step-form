@@ -62,9 +62,9 @@ class ThreeStepForm extends Component {
                 currentStep={currentStep}
                 onNext={this.nextStep}
                 onPrev={this.prevStep}
-                disabled={
+                disabled={Boolean(
                   values === initialValues || (errors.city || errors.state)
-                }
+                )}
               >
                 <SelectFields stateFilter={values.state} />
               </FormStep>
@@ -74,7 +74,7 @@ class ThreeStepForm extends Component {
                 currentStep={currentStep}
                 onNext={this.nextStep}
                 onPrev={this.prevStep}
-                disabled={errors.colors}
+                disabled={Boolean(errors.colors)}
               >
                 <CheckBoxFields
                   name="colors"
@@ -87,7 +87,9 @@ class ThreeStepForm extends Component {
                 currentStep={currentStep}
                 onNext={this.nextStep}
                 onPrev={this.prevStep}
-                disabled={errors.firstName || errors.secondName || errors.email}
+                disabled={Boolean(
+                  errors.firstName || errors.secondName || errors.email
+                )}
               >
                 <TextFields />
               </FormStep>
