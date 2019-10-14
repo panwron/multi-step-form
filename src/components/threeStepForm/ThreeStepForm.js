@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { string, object } from "yup";
 
+import Select from "./SelectFields";
+
 class ThreeStepForm extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +35,7 @@ class ThreeStepForm extends Component {
               <ErrorMessage name="firstName" />
               <Field name="secondName" />
               <ErrorMessage name="secondName" />
+              <Select name="colors" />
               <button type="submit">submit</button>
             </Form>
           )}
