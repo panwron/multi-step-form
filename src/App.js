@@ -1,10 +1,9 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import ThreeStepForm from "./components/threeStepForm/ThreeStepForm";
 
 function App() {
-  return (
-
-  );
+  return <ThreeStepForm />;
 }
 
 export default App;
