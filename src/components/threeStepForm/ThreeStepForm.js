@@ -4,6 +4,7 @@ import { string, object, array } from "yup";
 
 import SelectFields from "./SelectFields";
 import CheckBoxFields from "./CheckBoxFields";
+import TextFields from "./TextFields";
 
 class ThreeStepForm extends Component {
   constructor(props) {
@@ -23,11 +24,14 @@ class ThreeStepForm extends Component {
             email: ""
           }}
           validationSchema={object().shape({
-            firstName: string().required("required"),
-            secondName: string().required("required"),
             state: string().required("required"),
             city: string().required("required"),
-            colors: array().required("required")
+            colors: array().required("required"),
+            firstName: string().required("required"),
+            secondName: string().required("required"),
+            email: string()
+              .email("Invalid email address")
+              .required("required")
           })}
           onSubmit={values => {
             console.log(values);
@@ -35,12 +39,9 @@ class ThreeStepForm extends Component {
           }}
           render={({ values }) => (
             <Form>
-              <Field name="firstName" />
-              <ErrorMessage name="firstName" />
-              <Field name="secondName" />
-              <ErrorMessage name="secondName" />
               <SelectFields stateFilter={values.state} />
               <CheckBoxFields name="colors" values={["red", "green", "blue"]} />
+              <TextFields />
               <button type="submit">submit</button>
             </Form>
           )}
