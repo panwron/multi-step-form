@@ -4,14 +4,16 @@ import PropTypes from "prop-types";
 
 import cities from "../../data/cities.json";
 
-const Select = ({ name, values }) => {
+const states = [...new Set(cities.map(c => c.state))]; // extract states from cities data
+
+const Select = ({ name, options }) => {
   return (
     <div>
       <Field name={name} component="select">
-        <option value="">select city</option>
-        {cities.map((c, i) => (
-          <option key={i} value={c.city}>
-            {c.city}
+        <option value="">{`select ${name}`}</option>
+        {options.map((c, i) => (
+          <option key={i} value={c}>
+            {c}
           </option>
         ))}
       </Field>
@@ -21,7 +23,22 @@ const Select = ({ name, values }) => {
 };
 
 Select.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired
 };
 
-export default Select;
+const SelectFields = ({ stateFilter }) => (
+  <div className="select-container">
+    <Select name="state" options={states} />
+    <Select
+      name="city"
+      options={cities.filter(c => c.state === stateFilter).map(c => c.city)}
+    />
+  </div>
+);
+
+SelectFields.propTypes = {
+  stateFilter: PropTypes.string.isRequired
+};
+
+export default SelectFields;

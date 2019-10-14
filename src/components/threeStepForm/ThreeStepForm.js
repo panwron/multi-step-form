@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { string, object } from "yup";
 
 import Select from "./SelectFields";
+import SelectFields from "./SelectFields";
 
 class ThreeStepForm extends Component {
   constructor(props) {
@@ -24,19 +25,20 @@ class ThreeStepForm extends Component {
           validationSchema={object().shape({
             firstName: string().required("required"),
             secondName: string().required("required"),
+            state: string().required("required"),
             city: string().required("required")
           })}
           onSubmit={values => {
             console.log(values);
             this.setState({ submitedValues: values });
           }}
-          render={() => (
+          render={({ values }) => (
             <Form>
               <Field name="firstName" />
               <ErrorMessage name="firstName" />
               <Field name="secondName" />
               <ErrorMessage name="secondName" />
-              <Select name="city" />
+              <SelectFields stateFilter={values.state} />
               <button type="submit">submit</button>
             </Form>
           )}
