@@ -15,7 +15,7 @@ const FormStep = ({
       {children}
       <div className="buttons">
         {step !== 0 && (
-          <button type="button" disabled={disabled} onClick={() => onPrev()}>
+          <button type="button" onClick={() => onPrev()}>
             Prev
           </button>
         )}
