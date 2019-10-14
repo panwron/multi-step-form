@@ -43,7 +43,7 @@ class ThreeStepForm extends Component {
 
   handleSubmit = values => {
     console.table(values);
-    this.setState({ submitedValues: values });
+    this.props.onSubmit(values);
   };
 
   render() {
