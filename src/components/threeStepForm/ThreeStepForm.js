@@ -5,6 +5,7 @@ import { string, object, array } from "yup";
 import SelectFields from "./SelectFields";
 import CheckBoxFields from "./CheckBoxFields";
 import TextFields from "./TextFields";
+import FormStep from "./FormStep";
 
 const initialValues = {
   city: "",
@@ -29,8 +30,15 @@ const validationShema = {
 class ThreeStepForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      currentStep: 0
+    };
   }
+
+  nextStep = () =>
+    this.setState(({ currentStep }) => ({ currentStep: currentStep + 1 }));
+  prevStep = () =>
+    this.setState(({ currentStep }) => ({ currentStep: currentStep - 1 }));
 
   handleSubmit = values => {
     console.table(values);
@@ -38,18 +46,49 @@ class ThreeStepForm extends Component {
   };
 
   render() {
+    const { currentStep } = this.state;
     return (
       <div className="form-container">
         <Formik
           initialValues={initialValues}
           validationSchema={object().shape(validationShema)}
           onSubmit={this.handleSubmit}
-          render={({ values }) => (
+          render={({ values, errors, initialValues }) => (
             <Form>
-              <SelectFields stateFilter={values.state} />
-              <CheckBoxFields name="colors" values={["red", "green", "blue"]} />
-              <TextFields />
-              <button type="submit">submit</button>
+              <FormStep
+                step={0}
+                currentStep={currentStep}
+                onNext={this.nextStep}
+                onPrev={this.prevStep}
+                disabled={
+                  values === initialValues || (errors.city || errors.state)
+                }
+              >
+                <SelectFields stateFilter={values.state} />
+              </FormStep>
+
+              <FormStep
+                step={1}
+                currentStep={currentStep}
+                onNext={this.nextStep}
+                onPrev={this.prevStep}
+                disabled={errors.colors}
+              >
+                <CheckBoxFields
+                  name="colors"
+                  values={["red", "green", "blue"]}
+                />
+              </FormStep>
+
+              <FormStep
+                step={2}
+                currentStep={currentStep}
+                onNext={this.nextStep}
+                onPrev={this.prevStep}
+                disabled={errors.firstName || errors.secondName || errors.email}
+              >
+                <TextFields />
+              </FormStep>
             </Form>
           )}
         />
