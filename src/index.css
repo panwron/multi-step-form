@@ -5,9 +5,37 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+  font-size: 1.5rem;
+}
+.form-container {
+  padding: 20px;
+  border: 1px solid #ccc;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+input,
+select {
+  width: 100%;
+}
+
+.validationError {
+  font-size: 8px;
+  color: red;
+}
+
+label {
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.steps-indicator {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.steps-indicator span {
+  padding: 10px;
 }

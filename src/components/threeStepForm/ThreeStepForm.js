@@ -50,7 +50,10 @@ class ThreeStepForm extends Component {
     const { currentStep } = this.state;
     return (
       <div className="form-container">
+        <p>3 step form</p>
+        <hr />
         <StepsIndicator numOfSteps={3} currentStep={currentStep} />
+        <hr />
         <Formik
           initialValues={initialValues}
           validationSchema={object().shape(validationShema)}

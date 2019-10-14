@@ -7,7 +7,9 @@ const Input = ({ name, label, type }) => {
     <div>
       <label htmlFor={name}>{label}</label>
       <Field type={type || "text"} id={name} name={name}></Field>
-      <ErrorMessage name={name} />
+      <span className="validationError">
+        <ErrorMessage name={name} />
+      </span>
     </div>
   );
 };

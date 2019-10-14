@@ -39,7 +39,9 @@ const CheckBoxFields = ({ name, values }) => {
       {values.map((value, i) => (
         <Checkbox key={i} name={name} value={value} />
       ))}
-      <ErrorMessage name="colors" />
+      <span style={{ display: "block" }} className="validationError">
+        <ErrorMessage name="colors" />
+      </span>
     </div>
   );
 };

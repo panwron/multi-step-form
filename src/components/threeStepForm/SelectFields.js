@@ -17,7 +17,9 @@ const Select = ({ name, options }) => {
           </option>
         ))}
       </Field>
-      <ErrorMessage name={name} />
+      <span className="validationError">
+        <ErrorMessage name={name} />
+      </span>
     </div>
   );
 };
