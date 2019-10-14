@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Formik, Form, Field } from "formik";
+import { string, object } from "yup";
 
 class ThreeStepForm extends Component {
   constructor(props) {
@@ -18,6 +19,10 @@ class ThreeStepForm extends Component {
             secondName: "",
             email: ""
           }}
+          validationSchema={object().shape({
+            firstName: string().required("required"),
+            secondName: string().required("required")
+          })}
           onSubmit={values => {
             console.log(values);
             this.setState({ submitedValues: values });
