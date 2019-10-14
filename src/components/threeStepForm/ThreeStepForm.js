@@ -23,7 +23,8 @@ class ThreeStepForm extends Component {
           }}
           validationSchema={object().shape({
             firstName: string().required("required"),
-            secondName: string().required("required")
+            secondName: string().required("required"),
+            city: string().required("required")
           })}
           onSubmit={values => {
             console.log(values);
@@ -35,7 +36,7 @@ class ThreeStepForm extends Component {
               <ErrorMessage name="firstName" />
               <Field name="secondName" />
               <ErrorMessage name="secondName" />
-              <Select name="colors" />
+              <Select name="city" />
               <button type="submit">submit</button>
             </Form>
           )}
